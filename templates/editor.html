@@ -1,0 +1,62 @@
+  
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>ACE in Action</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style type="text/css" media="screen">
+    #editor { 
+        position: absolute;
+        top: 100px;
+        right: 100px;
+        bottom: 50px;
+        left: 50px;
+    }
+</style>
+</head>
+<body>
+
+
+
+
+<form action="/submitcode" method="POST">
+ {%csrf_token%}
+<div id="editor" style="font-size:15px;border:1px solid black"> class Main{
+
+        public static void main(String [] args)
+        {
+            System.out.println("hello world");
+            int a =10;
+        }
+    }
+   
+</div>
+<input type="hidden" id="codevalue" class="codevalue" name="codevalue" />
+<input type="submit"  value="submit"/>
+</form>
+
+
+
+    
+<script src="{% static 'js/ace.js'%}" type="text/javascript" charset="utf-8"></script>
+<script>
+    $(document).ready(function(){
+
+        console.log(editor.getSession().getValue());
+        $('#codevalue').val(editor.getSession().getValue()); 
+      });
+
+
+        var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/eclipse");
+    editor.session.setMode("ace/mode/java");
+    editor.getSession().on("change", function () {
+        console.log(editor.getSession().getValue());
+        $('#codevalue').val(editor.getSession().getValue()); 
+});
+
+</script>
+
+</body>
+</html>
