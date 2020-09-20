@@ -10,5 +10,4 @@ from django.conf.urls import handler404
 
 urlpatterns = [
     path('',views.homepage,name="homepage"),
-    path('submitcode',views.submitcode,name="submitcode"),
 ]
