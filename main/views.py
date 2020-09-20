@@ -10,9 +10,7 @@ from django.template import Context, loader
 
 # Create your views here.
 def homepage(request):
-    return render(request,'editor.html')
-
-def submitcode(request):
     code = request.POST['codevalue']
     print(code)
-    return redirect('/')
+    return render(request,'editor.html')
+
